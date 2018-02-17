@@ -10,12 +10,17 @@
     "default_popup": "popup.html"
   },
   "permissions": [
-    "activeTab"
+    "activeTab", "<all_urls>"
   ],
   "content_scripts": [
     {
         "matches": ["<all_urls>"],
         "js": ["scripts/myscript.js"]
     }
-  ]
+  ],
+
+  "background":
+  {
+    "scripts": ["thirdParty/jquery-2.0.3.js", "background.js"]
+  }
 }
