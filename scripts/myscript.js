@@ -18,10 +18,10 @@ $(document).keydown(function(e) {
             index = 0;
             length = srcList.length;
             if( srcList.length == 1){
-                speak("We have " + srcList.length + " image. Press escape to quit, or press the left shift key to play the next image discussion. ");
+                speak("We have " + srcList.length + " image. Press escape to quit, or press the left shift key to play the next image description. ");
             }
             else{
-                speak("We have " + srcList.length + " images. Press escape to quit, or press the left shift key to play the next image discussion. ");
+                speak("We have " + srcList.length + " images. Press escape to quit, or press the left shift key to play the next image description. ");
             }
         }
         if (map[27]){
