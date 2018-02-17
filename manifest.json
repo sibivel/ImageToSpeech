@@ -15,12 +15,12 @@
   "content_scripts": [
     {
         "matches": ["<all_urls>"],
-        "js": ["scripts/myscript.js"]
+        "js": ["scripts/jquery-3.3.1.min.js", "scripts/myscript.js"]
     }
   ],
 
   "background":
   {
-    "scripts": ["thirdParty/jquery-2.0.3.js", "background.js"]
-  }
+    "scripts": ["scripts/jquery-3.3.1.min.js"]
+}
 }
