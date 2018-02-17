@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+
+  "name": "Image to Speech",
+  "description": "This extension will describe images to blind people",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab"
+  ]
+}
