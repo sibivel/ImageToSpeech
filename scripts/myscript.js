@@ -11,6 +11,13 @@ $(document).keydown(function(e) {
                 return this.src;
             }).get();
             console.log(srcList);
+            if( srcList.length == 1){
+                speak("We have " + srcList.length + " image. Press escape to quit, or press the tilda key to play the next image discussion. ");
+            }
+            else{
+                speak("We have " + srcList.length + " images. Press escape to quit, or press the tilda key to play the next image discussion. ");
+            }
+            
         }
     }
 }).keyup(function(e) {
