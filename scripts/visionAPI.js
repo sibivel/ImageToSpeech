@@ -54,60 +54,38 @@ function getImageData(uri) {
 }
 
 function parseImageData(obj) {
+
     var str = [];
     var labelAnnotations = obj['responses'][0]['labelAnnotations'];
     var webTerms = obj['responses'][0]['webDetection']['bestGuessLabels'][0];
-    
-    var faceTerms = obj['responses'][0]['faceAnnotations'];
-    var webTerm = webTerms.label.toLowerCase();
+
+    if (labelAnnotations != undefined) {
+        var faceTerms = obj['responses'][0]['faceAnnotations'];
+        var webTerm = webTerms.label.toLowerCase();
 
 
-    for (i = 0; i < labelAnnotations.length; i++) {
-        var label = labelAnnotations[i].description.toLowerCase();
-        if (labelAnnotations[i].score >= 0.89) {
-            if (webTerm.includes(label) || label.includes(webTerm)) {
-                continue;
+        for (i = 0; i < labelAnnotations.length; i++) {
+            var label = labelAnnotations[i].description.toLowerCase();
+            if (labelAnnotations[i].score >= 0.89) {
+                if (webTerm.includes(label) || label.includes(webTerm)) {
+                    continue;
+                }
+                str.push('this is an image of ' + webTerms.label + ' with ' +
+                    labelAnnotations[i].description);
+                break;
+            }else {
+                str.push('this is an image of ' + webTerm);
+                break;
+
             }
-            str.push('this is an image of ' + webTerms.label + ' with ' +
-                labelAnnotations[i].description);
-            break;
-        }else {
-            str.push('this is an image of ' + webTerm);
-            break;
-
         }
+
+        return str.join(', ');
+    }else {
+        return "sorry, no description is available";
     }
 
-    return str.join(', ');
 }
 
-// http('GET', chrome.runtime.getURL('config.json'), '', function (obj) {
-//     API_KEY = obj.key;
-//     document.dispatchEvent(new Event('config-loaded'));
-// });
-//
-//
-// function loadClient() {
-//     gapi.client.setApiKey("AIzaSyDaBwDtrwcTIpQf4wAHi_GaCtnBahXdLFsp");
-//     return gapi.client.load(
-//         'https://content.googleapis.com/discovery/v1/apis/vision/v1p1beta1/rest').
-//         then(function() { console.log('GAPI client loaded for API'); },
-//             function(err) {
-//                 console.error('Error loading GAPI client for API', err);
-//             });
-// }
-//
-// // Make sure the client is loaded before calling this method.
-// function execute() {
-//     console.log("got here");
-//     return gapi.client.vision.images.annotate().then(function(response) {
-//             // Handle the results here (response.result has the parsed body).
-//
-//             console.log('Response', response);
-//         },
-//         function(err) { console.error('Execute error', err); });
-// }
-//
-// gapi.load("client");
 
 
