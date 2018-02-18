@@ -45,8 +45,9 @@ var data = {
 function getImageData(uri) {
     var image_data;
     data.requests[0].image.source.imageUri = uri;
+    url = 'https://vision.googleapis.com/v1/images:annotate?key='+getAPIKey();
     http('POST',
-        'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDaBwDtrwcTIpQf4wAHi_GaCtnBahXdLFs',
+        url,
         JSON.stringify(data), function(obj) {
             console.log(obj);
             speak(parseImageData(obj));

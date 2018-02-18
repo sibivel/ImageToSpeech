@@ -27,7 +27,7 @@ $(document).keydown(function(e) {
             srcList = $('img').map(function() {
                 url = this.src;
                 if(this.clientWidth > 20 && this.clientHeight > 20){
-                    if(url.endsWith('.jpg')||url.endsWith('.jpeg')||url.endsWith('.png') || url.endsWith('.webp')){
+                    if(url.includes('.jpg')||url.includes('.jpeg')||url.endsWith('.png') || url.includes('.webp')){
                         return this.src;
                     }
                 }
