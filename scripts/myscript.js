@@ -50,7 +50,7 @@ $(document).keydown(function(e) {
         //else press left shift in order to go through the various images
         else if (map[16] && readimage){
             if (index < length){
-                speak("This is the description of image number " + (index + 1));
+                speak("Image number " + (index + 1));
                 ++index;
                 getImageData(srcList[index]);
             }

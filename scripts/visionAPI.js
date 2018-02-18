@@ -25,15 +25,22 @@ var data = {
             },
             'features': [
                 {
-                    'maxResults': 5,
                     'type': 'LABEL_DETECTION',
+                    'maxResults': 5,
+                },
+                {
+                    'type': 'FACE_DETECTION',
+                    'maxResults': 5,
+                },
+                {
+                    'type': 'WEB_DETECTION',
+                    'maxResults': 5,
                 },
             ],
             'imageContext': {},
         },
     ],
-}
-
+};
 
 function getImageData(uri) {
     var image_data;
@@ -47,15 +54,32 @@ function getImageData(uri) {
 }
 
 function parseImageData(obj) {
-    str = [];
-    labelAnnotations = obj["responses"][0]["labelAnnotations"];
-    for (i = 0; i < labelAnnotations.length; i++){
-        str.push(labelAnnotations[i].description);
+    var str = [];
+    var labelAnnotations = obj['responses'][0]['labelAnnotations'];
+    var webTerms = obj['responses'][0]['webDetection']['bestGuessLabels'][0];
+    
+    var faceTerms = obj['responses'][0]['faceAnnotations'];
+    var webTerm = webTerms.label.toLowerCase();
+
+
+    for (i = 0; i < labelAnnotations.length; i++) {
+        var label = labelAnnotations[i].description.toLowerCase();
+        if (labelAnnotations[i].score >= 0.89) {
+            if (webTerm.includes(label) || label.includes(webTerm)) {
+                continue;
+            }
+            str.push('this is an image of ' + webTerms.label + ' with ' +
+                labelAnnotations[i].description);
+            break;
+        }else {
+            str.push('this is an image of ' + webTerm);
+            break;
+
+        }
     }
+
     return str.join(', ');
 }
-
-
 
 // http('GET', chrome.runtime.getURL('config.json'), '', function (obj) {
 //     API_KEY = obj.key;
@@ -85,3 +109,5 @@ function parseImageData(obj) {
 // }
 //
 // gapi.load("client");
+
+
