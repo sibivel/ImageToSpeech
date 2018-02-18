@@ -12,17 +12,7 @@ var index = 0
 //initialize length of list of images to 0
 var length = 0
 
-function getDimensions(url){
-    $("<img/>",{
-        load : function(){
-            if (this.height < 100 || this.width < 100){
 
-            }
-        },
-        src  : url
-    });
-}
-// getImageData();
 
 var srcList;
 //Checks for keypresses
@@ -35,9 +25,24 @@ $(document).keydown(function(e) {
 
             //gets image urls
             srcList = $('img').map(function() {
-                return this.src;
+                url = this.src;
+                if(this.clientWidth > 20 && this.clientHeight > 20){
+                    if(url.endsWith('.jpg')||url.endsWith('.jpeg')||url.endsWith('.png') || url.endsWith('.webp')){
+                        return this.src;
+                    }
+                }
+                return false;
+                
             }).get();
+            var temp = [];
+            for(var i = 0; i < srcList.length; i++){
+                if(srcList[i] != false){
+                    temp.push(srcList[i]);
+                }
+            }
+            srcList = temp;
             console.log(srcList);
+
             index = 0;
             length = srcList.length;
 
@@ -67,8 +72,8 @@ $(document).keydown(function(e) {
         else if (map[16] && readimage){
             if (index < length){
                 speak("image " + (index + 1) + " description");
-                ++index;
                 getImageData(srcList[index]);
+                ++index;
             }
             else {
                 speak("There are no more images left in this list");
