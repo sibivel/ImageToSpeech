@@ -1,5 +1,2 @@
 # ImageToSpeech
-pip install --upgrade google-cloud-vision
-pip install pyttsx
-    Some issues may arise with pyttsx, use 
-    https://stackoverflow.com/questions/29615235/pyttsx-no-module-named-engine to fix
+This is a basic image to speech using javascript and Google Vision API. 
