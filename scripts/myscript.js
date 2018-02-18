@@ -41,8 +41,15 @@ $(document).keydown(function(e) {
             index = 0;
             length = srcList.length;
 
+            if( srcList.length == 0){
+                speak("There are no images in this page");
+                index = 0;
+                length = 0;
+                readimage = false;
+            }
+
             //Go through the images
-            if( srcList.length == 1){
+            else if( srcList.length == 1){
                 speak("We have " + srcList.length + " image. Press escape to quit, or press the left shift key to play the next image description. ");
             }
             else{
@@ -51,7 +58,7 @@ $(document).keydown(function(e) {
         }
 
         //exit the program by pressing escape
-        if (map[27]){
+        if (map[27] && readimage){
             readimage = false;
             speak("Program Exited.");
         }
