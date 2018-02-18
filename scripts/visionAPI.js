@@ -36,13 +36,23 @@ var data = {
 
 
 function getImageData() {
+    var image_data;
     http('POST',
         'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDaBwDtrwcTIpQf4wAHi_GaCtnBahXdLFs',
         JSON.stringify(data), function(obj) {
             console.log(obj);
+            parseImageData(obj);
         });
-
 }
+
+function parseImageData(obj) {
+    labelAnnotations = obj["responses"][0]["labelAnnotations"];
+    for (i = 0; i < labelAnnotations.length; i++){
+        speak(labelAnnotations[i].description);
+    }
+}
+
+
 
 // http('GET', chrome.runtime.getURL('config.json'), '', function (obj) {
 //     API_KEY = obj.key;
