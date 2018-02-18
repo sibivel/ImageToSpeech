@@ -88,6 +88,6 @@
 
 function speak(text){
     var msg = new SpeechSynthesisUtterance(text);
-    msg.rate = 2;
+    msg.rate = 1.3;
     speechSynthesis.speak(msg);
 }

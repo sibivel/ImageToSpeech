@@ -55,14 +55,13 @@ function getImageData(uri) {
 
 function parseImageData(obj) {
 
-    var str = [];
-    var labelAnnotations = obj['responses'][0]['labelAnnotations'];
-    var webTerms = obj['responses'][0]['webDetection']['bestGuessLabels'][0];
+    try {
+        var str = [];
+        var labelAnnotations = obj['responses'][0]['labelAnnotations'];
+        var webTerms = obj['responses'][0]['webDetection']['bestGuessLabels'][0];
 
-    if (labelAnnotations != undefined) {
         var faceTerms = obj['responses'][0]['faceAnnotations'];
         var webTerm = webTerms.label.toLowerCase();
-
 
         for (i = 0; i < labelAnnotations.length; i++) {
             var label = labelAnnotations[i].description.toLowerCase();
@@ -73,7 +72,7 @@ function parseImageData(obj) {
                 str.push('this is an image of ' + webTerms.label + ' with ' +
                     labelAnnotations[i].description);
                 break;
-            }else {
+            } else {
                 str.push('this is an image of ' + webTerm);
                 break;
 
@@ -81,9 +80,11 @@ function parseImageData(obj) {
         }
 
         return str.join(', ');
-    }else {
-        return "sorry, no description is available";
+    }catch (err) {
+        return "sorry, no description is available."
     }
+
+
 
 }
 
