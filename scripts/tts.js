@@ -1,4 +1,4 @@
-// /*
+bm,mn,j// /*
 //  * Check for browser support
 //  */
 // var supportMsg = document.getElementById('msg');
