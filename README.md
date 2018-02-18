@@ -1,5 +1,6 @@
 # ImageToSpeech
 # Winner of the Maker Award HACKCWRU V 2018
+# Made by: Sibi Sengottuvel, Alexander Telich, Rahul Pokharna, Isaac Ng
 
 This is a basic image to speech translator Chrome extension using Javascript and Google Vision API.
 
