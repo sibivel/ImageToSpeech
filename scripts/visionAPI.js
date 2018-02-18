@@ -59,34 +59,3 @@ function parseImageData(obj) {
         return "Image data not fetched."
     }
 }
-
-
-
-// http('GET', chrome.runtime.getURL('config.json'), '', function (obj) {
-//     API_KEY = obj.key;
-//     document.dispatchEvent(new Event('config-loaded'));
-// });
-//
-//
-// function loadClient() {
-//     gapi.client.setApiKey("AIzaSyDaBwDtrwcTIpQf4wAHi_GaCtnBahXdLFsp");
-//     return gapi.client.load(
-//         'https://content.googleapis.com/discovery/v1/apis/vision/v1p1beta1/rest').
-//         then(function() { console.log('GAPI client loaded for API'); },
-//             function(err) {
-//                 console.error('Error loading GAPI client for API', err);
-//             });
-// }
-//
-// // Make sure the client is loaded before calling this method.
-// function execute() {
-//     console.log("got here");
-//     return gapi.client.vision.images.annotate().then(function(response) {
-//             // Handle the results here (response.result has the parsed body).
-//
-//             console.log('Response', response);
-//         },
-//         function(err) { console.error('Execute error', err); });
-// }
-//
-// gapi.load("client");
