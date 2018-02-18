@@ -49,10 +49,15 @@ function getImageData(uri) {
 function parseImageData(obj) {
     str = [];
     labelAnnotations = obj["responses"][0]["labelAnnotations"];
-    for (i = 0; i < labelAnnotations.length; i++){
-        str.push(labelAnnotations[i].description);
+    if (labelAnnotations){
+        for (i = 0; i < labelAnnotations.length; i++){
+            str.push(labelAnnotations[i].description);
+        }
+        return str.join(', ');
     }
-    return str.join(', ');
+    else{
+        return "Image data not fetched."
+    }
 }
 
 
