@@ -26,7 +26,7 @@ $(document).keydown(function(e) {
             //gets image urls
             srcList = $('img').map(function() {
                 url = this.src;
-                if(this.clientWidth > 20 && this.clientHeight > 20){
+                if(this.clientWidth > 50 && this.clientHeight > 50){
                     if(url.includes('.jpg')||url.includes('.jpeg')||url.endsWith('.png') || url.includes('.webp')){
                         return this.src;
                     }
