@@ -12,7 +12,16 @@ var index = 0
 //initialize length of list of images to 0
 var length = 0
 
+function getDimensions(url){
+    $("<img/>",{
+        load : function(){
+            if (this.height < 100 || this.width < 100){
 
+            }
+        },
+        src  : url
+    });
+}
 // getImageData();
 
 var srcList;
