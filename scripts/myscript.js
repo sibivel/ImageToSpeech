@@ -13,7 +13,6 @@ var index = 0
 var length = 0
 
 
-// getImageData();
 
 var srcList;
 //Checks for keypresses
@@ -26,14 +25,36 @@ $(document).keydown(function(e) {
 
             //gets image urls
             srcList = $('img').map(function() {
-                return this.src;
+                url = this.src;
+                if(this.clientWidth > 20 && this.clientHeight > 20){
+                    if(url.endsWith('.jpg')||url.endsWith('.jpeg')||url.endsWith('.png') || url.endsWith('.webp')){
+                        return this.src;
+                    }
+                }
+                return false;
+                
             }).get();
+            var temp = [];
+            for(var i = 0; i < srcList.length; i++){
+                if(srcList[i] != false){
+                    temp.push(srcList[i]);
+                }
+            }
+            srcList = temp;
             console.log(srcList);
+
             index = 0;
             length = srcList.length;
 
+            if( length == 0){
+                speak("There are no images in this page");
+                index = 0;
+                length = 0;
+                readimage = false;
+            }
+
             //Go through the images
-            if( srcList.length == 1){
+            else if( srcList.length == 1){
                 speak("We have " + srcList.length + " image. Press escape to quit, or press the left shift key to play the next image description. ");
             }
             else{
@@ -42,7 +63,7 @@ $(document).keydown(function(e) {
         }
 
         //exit the program by pressing escape
-        if (map[27]){
+        if (map[27] && readimage){
             readimage = false;
             speak("Program Exited.");
         }
@@ -50,9 +71,9 @@ $(document).keydown(function(e) {
         //else press left shift in order to go through the various images
         else if (map[16] && readimage){
             if (index < length){
-                speak("Image number " + (index + 1));
-                ++index;
+                speak("image " + (index + 1) + " description");
                 getImageData(srcList[index]);
+                ++index;
             }
             else {
                 speak("There are no more images left in this list");
