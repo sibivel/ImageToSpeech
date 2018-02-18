@@ -12,6 +12,10 @@ var index = 0
 //initialize length of list of images to 0
 var length = 0
 
+
+getImageData();
+
+
 //Checks for keypresses
 $(document).keydown(function(e) {
     if (e.keyCode in map) {

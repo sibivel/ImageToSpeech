@@ -15,12 +15,8 @@
   "content_scripts": [
     {
         "matches": ["<all_urls>"],
-        "js": ["scripts/jquery-3.3.1.min.js", "scripts/tts.js", "scripts/myscript.js"]
-    }
-  ],
 
-  "background":
-  {
-    "scripts": ["scripts/jquery-3.3.1.min.js"]
-}
+        "js": ["scripts/jquery-3.3.1.min.js", "scripts/visionAPI.js", "scripts/tts.js", "scripts/myscript.js"]
+    }
+  ]
 }
