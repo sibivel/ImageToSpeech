@@ -35,21 +35,24 @@ var data = {
 }
 
 
-function getImageData() {
+function getImageData(uri) {
     var image_data;
+    data.requests[0].image.source.imageUri = uri;
     http('POST',
         'https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDaBwDtrwcTIpQf4wAHi_GaCtnBahXdLFs',
         JSON.stringify(data), function(obj) {
             console.log(obj);
-            parseImageData(obj);
+            speak(parseImageData(obj));
         });
 }
 
 function parseImageData(obj) {
+    str = [];
     labelAnnotations = obj["responses"][0]["labelAnnotations"];
     for (i = 0; i < labelAnnotations.length; i++){
-        speak(labelAnnotations[i].description);
+        str.push(labelAnnotations[i].description);
     }
+    return str.join(', ');
 }
 
 

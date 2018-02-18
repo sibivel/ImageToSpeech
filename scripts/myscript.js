@@ -13,9 +13,9 @@ var index = 0
 var length = 0
 
 
-getImageData();
+// getImageData();
 
-
+var srcList;
 //Checks for keypresses
 $(document).keydown(function(e) {
     if (e.keyCode in map) {
@@ -25,7 +25,7 @@ $(document).keydown(function(e) {
             readimage = true;
 
             //gets image urls
-            var srcList = $('img').map(function() {
+            srcList = $('img').map(function() {
                 return this.src;
             }).get();
             console.log(srcList);
@@ -52,7 +52,7 @@ $(document).keydown(function(e) {
             if (index < length){
                 speak("This is the description of image number " + (index + 1));
                 ++index;
-                //Google Vision code
+                getImageData(srcList[index]);
             }
             else {
                 speak("There are no more images left in this list");
