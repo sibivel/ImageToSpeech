@@ -41,7 +41,7 @@ $(document).keydown(function(e) {
             index = 0;
             length = srcList.length;
 
-            if( srcList.length == 0){
+            if( length == 0){
                 speak("There are no images in this page");
                 index = 0;
                 length = 0;
@@ -66,7 +66,7 @@ $(document).keydown(function(e) {
         //else press left shift in order to go through the various images
         else if (map[16] && readimage){
             if (index < length){
-                speak("This is the description of image number " + (index + 1));
+                speak("image " + (index + 1) + " description");
                 ++index;
                 getImageData(srcList[index]);
             }
