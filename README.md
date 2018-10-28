@@ -15,3 +15,6 @@ Could potentially teach people to read or pronounce things. Little kids could le
 2. https://mangapark.me/latest
 3. https://www.biography.com/people/groups/athletes-basketball-players
 4. https://pixabay.com/en/photos/wild%20animals/
+
+## Devpost Entry: 
+https://devpost.com/software/imagetospeech
